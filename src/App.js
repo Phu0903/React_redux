@@ -1,27 +1,31 @@
 import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 import News from './News';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <News></News>
-    </div>
-  );
+const mapStateToProps = (state, ownProps) => {
+  return {
+    dulieu: state.num
+  }
 }
 
-export default App;
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+         <header >
+        <img src={logo} className="App-logo" alt="logo" />
+      </header>
+      {this.props.dulieu}
+      <News></News>
+      </div>
+    );
+  }
+}
+
+
+
+
+export default connect(mapStateToProps)(App);
